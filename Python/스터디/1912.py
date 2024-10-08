@@ -45,6 +45,7 @@ def main():
     # Dynamic Programming Memoization Step
     memo = [0] * count
     memo[0] = progression[0]
+    # memo = [progression[0]]
 
     # Bottom - Up Dynamic Programming
     """
@@ -57,6 +58,7 @@ def main():
     for i in range(1, count):
         # 점화식, max 함수보다 if else가 조금 더 빠르다.
         memo[i] = memo[i - 1] + progression[i] if memo[i - 1] + progression[i] > progression[i] else progression[i]
+        # memo.append(memo[i - 1] + progression[i] if memo[i - 1] + progression[i] > progression[i] else progression[i])
 
     sys.stdout.write(str(max(memo)))
 
@@ -67,4 +69,7 @@ if __name__ == "__main__":
 놀랍게도
 낼 때마다 속도가 바뀐다...
 60, 64, 56...
+
+append? 인덱싱? 유의미한 속도 차이는 아니지만 조금의 차이가 있는 듯 하다.
+인덱스를 사용해서 하는 것이 조금 더 빠른건가...?
 """
