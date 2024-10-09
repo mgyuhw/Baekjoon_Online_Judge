@@ -1,5 +1,13 @@
 # import sys
 #
+# """
+# 주어진 수열의 모든 경우의 수를 계산
+# 결과값은 memo 배열에 저장하여 재사용
+# e.g., progression[0]부터 progression[3]까지의 합을 구할 때,
+# 그 이전에 계산했던 [0]부터 [2]까지의 합을 메모에서 꺼내와 계산.
+# 즉, progression[3] + memo[2]
+# 단, 이 방법은 시간초과가 난다.
+# """
 # def main():
 #     # Input Step
 #     count = int(sys.stdin.readline())
@@ -10,14 +18,6 @@
 #     result = -1000
 #
 #     # Bottom - Up Dynamic Programming
-#     """
-#     주어진 수열의 모든 경우의 수를 계산
-#     결과값은 memo 배열에 저장하여 재사용
-#     e.g., progression[0]부터 progression[3]까지의 합을 구할 때,
-#     그 이전에 계산했던 [0]부터 [2]까지의 합을 메모에서 꺼내와 계산.
-#     즉, progression[3] + memo[2]
-#     단, 이 방법은 시간초과가 난다.
-#     """
 #     for i in range(count):
 #         memo.clear()
 #
@@ -42,7 +42,7 @@ def main():
     count = int(sys.stdin.readline())
     progression = list(map(int, sys.stdin.readline().split()))
 
-    # Dynamic Programming Memoization Step
+    # Memory variable for Memoization
     memo = [0] * count
     memo[0] = progression[0]
     # memo = [progression[0]]
