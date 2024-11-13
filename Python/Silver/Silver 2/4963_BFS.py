@@ -1,21 +1,28 @@
 import sys
+from collections import deque
+
 sys.setrecursionlimit(3000)
 
-dx = (-1, 0, 1, -1, 1, -1, 0, 1)
-dy = (-1, -1, -1, 0, 0, 1, 1, 1)
+g_dx = (-1, 0, 1, -1, 1, -1, 0, 1)
+g_dy = (-1, -1, -1, 0, 0, 1, 1, 1)
 g_width = g_height = 0
 g_matrix = g_visited = []
 
-# def dfs(y, x):
-#     for i in range(8):
-#         nx = x + dx[i]
-#         ny = y + dy[i]
-#         # print(f"nx {nx}, ny {ny}")
+# def bfs(y, x):
+#     queue = deque()
+#     queue.append((y, x))
 #
-#         if 0 <= nx < g_width and 0 <= ny < g_height and g_matrix[ny][nx] and not g_visited[ny][nx]:
-#             g_visited[ny][nx] = True
-#             # print(f"dfs visited {g_visited}\n")
-#             dfs(ny, nx)
+#     while queue:
+#         y, x = queue.popleft()
+#         for i in range(8):
+#             nx = x + g_dx[i]
+#             ny = y + g_dy[i]
+#             # print(f"nx {nx}, ny {ny}")
+#
+#             if 0 <= nx < g_width and 0 <= ny < g_height and g_matrix[ny][nx] and not g_visited[ny][nx]:
+#                 g_visited[ny][nx] = True
+#                 queue.append((ny, nx))
+#                 # print(f"dfs visited {g_visited}\n")
 #
 # def main():
 #     global g_width, g_height, g_visited, g_matrix
@@ -37,22 +44,31 @@ g_matrix = g_visited = []
 #                     g_visited[i][j] = True
 #                     # print(f"main visitied {g_visited}\n")
 #                     # print(i, j)
-#                     dfs(i,j)
+#                     bfs(i, j)
 #                     count += 1
 #
 #         sys.stdout.write(str(count) + "\n")
 
+"""
+visited 안쓰고 하는 방법
+지나간 땅을 바다로 바꾼다.
+"""
 
-def dfs(y, x):
-    for i in range(8):
-        nx = x + dx[i]
-        ny = y + dy[i]
-        # print(f"nx {nx}, ny {ny}")
+def bfs(y, x):
+    queue = deque()
+    queue.append((y, x))
 
-        if 0 <= nx < g_width and 0 <= ny < g_height and g_matrix[ny][nx]:
-            g_matrix[ny][nx] = 0
-            # print(f"dfs visited {g_visited}\n")
-            dfs(ny, nx)
+    while queue:
+        y, x = queue.popleft()
+        for i in range(8):
+            nx = x + g_dx[i]
+            ny = y + g_dy[i]
+            # print(f"nx {nx}, ny {ny}")
+
+            if 0 <= nx < g_width and 0 <= ny < g_height and g_matrix[ny][nx]:
+                g_matrix[ny][nx] = 0
+                queue.append((ny, nx))
+                # print(f"dfs visited {g_visited}\n")
 
 def main():
     global g_width, g_height, g_matrix
@@ -73,7 +89,7 @@ def main():
                     g_matrix[i][j] = 0
                     # print(f"main visitied {g_visited}\n")
                     # print(i, j)
-                    dfs(i,j)
+                    bfs(i, j)
                     count += 1
 
         sys.stdout.write(str(count) + "\n")
