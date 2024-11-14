@@ -24,7 +24,7 @@ if __name__ == "__main__":
         nodes[vertex2].append(vertex1)
 
     for i in range(1, node + 1):
-        nodes[i].sort(reverse = True)
+        nodes[i].sort()
 
     dfs(start, 0)
 
