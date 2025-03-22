@@ -1,5 +1,7 @@
+import sys
+
 if __name__ == "__main__":
-    hour, minute = map(int, input().split())
+    hour, minute = map(int, sys.stdin.readline().split())
     time = int(input())
 
     minute += time
@@ -11,4 +13,4 @@ if __name__ == "__main__":
     if hour >= 24:
         hour -= 24
 
-    print(f"{hour} {minute}")
+    sys.stdout.write(f"{hour} {minute}")
